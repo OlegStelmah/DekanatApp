@@ -1,0 +1,89 @@
+﻿@model List<TeachPlanModel>
+@{
+    ViewData["Title"] = "TeachPlans";
+}
+
+<div class="row">
+    <h3 class="alert alert-info">Teach Plans</h3><br />
+    
+    <label style="float: left;margin-right: 10px;">Faculty: </label>
+    <select id="teachPlansSelect" class="dropdown dropdown-header" style="margin-bottom: 40px; margin-bottom: 40px; height: 30px; width: 200px; border-color: grey; border-radius: 5px;float: left;margin-right: 30px;">
+        <option value="-1">
+            All
+        </option>
+        @foreach (var user in ViewBag.Faculties)
+        {
+            <option value="@user.Id">
+                @user.Text
+            </option>
+        }
+    </select>
+    <button id="findPlansBtn" class="btn btn-info">Find</button>
+</div>
+
+@if (Model != null && Model.Any())
+{
+    <div class="row">
+        <table class="table table-responsive table-bordered table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        Faculty
+                    </th>
+                    <th>
+                        Cafedra
+                    </th>
+                    <th>
+                        Speciality
+                    </th>
+                    <th>
+                        Test Kind Name
+                    </th>
+                    <th>
+                        Subject Name
+                    </th>
+                    <th>
+                        Subject Shifr
+                    </th>
+                    <th>
+                        Teach Begind Date
+                    </th>
+                    <th>
+                        Teach End Date
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @item.Faculty
+                        </td>
+                        <td>
+                            @item.Cafedra
+                        </td>
+                        <td>
+                            @item.Speciality
+                        </td>
+                        <td>
+                            @item.TestKindName
+                        </td>
+                        <td>
+                            @item.SubjectName
+                        </td>
+                        <td>
+                            @item.SubjectShifr
+                        </td>
+                        <td>
+                            @item.TeachBegindDate
+                        </td>
+                        <td>
+                            @item.TeachEndDate
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}

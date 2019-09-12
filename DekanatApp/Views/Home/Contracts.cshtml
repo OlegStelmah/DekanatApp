@@ -1,0 +1,83 @@
+﻿@model List<ContractModel>
+@{
+    ViewData["Title"] = "Contracts";
+}
+
+<div class="row">
+    <h3 class="alert alert-info">Student's Contracts</h3><br/>
+    
+    <label style="float: left;margin-right: 10px;">Student: </label>
+    <select id="studentsSelect" class="dropdown dropdown-header" style="margin-bottom: 40px; margin-bottom: 40px; height: 30px; width: 200px; border-color: grey; border-radius: 5px;float: left;margin-right: 30px;">
+        <option value="-1">
+            All
+        </option>
+        @foreach (var user in ViewBag.Students)
+        {
+            <option value="@user.Id">
+                @user.Text
+            </option>
+        }
+    </select>
+    <button id="findBtn" class="btn btn-info">Find</button>
+</div>
+
+@if (Model != null && Model.Any())
+{
+    <div class="row">
+        <table class="table table-responsive table-bordered table-striped table-hover">
+            <thead>
+            <tr>
+                <th>
+                    Student Name
+                </th>
+                <th>
+                    Student Surname
+                </th>
+                <th>
+                    Contract Kind Name
+                </th>
+                <th>
+                    Contract Date
+                </th>
+                <th>
+                    Contract Sum
+                </th>
+                <th>
+                    Payment Date
+                </th>
+                <th>
+                    Payment Sum
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.StudentName
+                    </td>
+                    <td>
+                        @item.StudentSurname
+                    </td>
+                    <td>
+                        @item.ContractKindName
+                    </td>
+                    <td>
+                        @item.ContractDate
+                    </td>
+                    <td>
+                        @item.ContractSum
+                    </td>
+                    <td>
+                        @item.PaymentDate
+                    </td>
+                    <td>
+                        @item.PaymentSum
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+}

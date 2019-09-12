@@ -1,0 +1,71 @@
+﻿@model List<DiplomasMarksModel>
+@{
+    ViewData["Title"] = "Diplomas";
+}
+
+<div class="row">
+    <h3 class="alert alert-info">Diplomas</h3><br />
+    
+    <label style="float: left;margin-right: 10px;">Group Code: </label>
+    <select id="diplomasSelect" class="dropdown dropdown-header" style="margin-bottom: 40px; margin-bottom: 40px; height: 30px; width: 200px; border-color: grey; border-radius: 5px;float: left;margin-right: 30px;">
+        <option value="-1">
+            All
+        </option>
+        @foreach (var group in ViewBag.Groups)
+        {
+            <option value="@group.Id">
+                @group.Text
+            </option>
+        }
+    </select>
+    <button id="findDiplomasBtn" class="btn btn-info">Find</button>
+</div>
+
+@if (Model != null && Model.Any())
+{
+    <div class="row">
+        <table class="table table-responsive table-bordered table-striped table-hover">
+            <thead>
+            <tr>
+                <th>
+                    Group Code
+                </th>
+                <th>
+                    Student Name
+                </th>
+                <th>
+                    Student Surname
+                </th>
+                <th>
+                    Diploma Name
+                </th>
+                <th>
+                    Mark Name
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.GroupCode
+                    </td>
+                    <td>
+                        @item.StudentName
+                    </td>
+                    <td>
+                        @item.StudentSurname
+                    </td>
+                    <td>
+                        @item.DiplomaName
+                    </td>
+                    <td>
+                        @item.MarkName
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+}
